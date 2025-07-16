@@ -1,0 +1,30 @@
+<div>
+
+    @for (species of bestiarySpeciesList; track $index) 
+    {
+        <li>{{species}}</li>
+        <ul>
+            @for (creature of dummyBeastsList; track $index) {
+                 @if (creature.species === species) {
+                    <li>{{creature.name}}</li>
+                    <button (click)="displayCreatureInfo(creature.name)">{{creature.name}}</button>
+                    
+                 }
+            }
+                    
+            
+        </ul>
+        
+    }
+
+
+    @if (openCreatureInfo === true) {
+       
+        <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)"></app-creature-display-component>
+         <button (click)="onReturn()">Finish Viewing</button>
+    }
+
+    
+</div>
+
+
