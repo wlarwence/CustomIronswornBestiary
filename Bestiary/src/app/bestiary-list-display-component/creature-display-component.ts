@@ -13,5 +13,4 @@ export class CreatureDisplayComponent {
 
   creatureList = dummyBeasts;
   @Input ({required: true}) creatureNameInput!: string;
-
 }
