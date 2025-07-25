@@ -12,5 +12,15 @@ import { BestiaryEntry } from '../bestiary-entry.model';
 export class CreatureDisplayComponent {
 
   creatureList = dummyBeasts;
+  isDisplayOpen = true;
+  
+  i = 0;
   @Input ({required: true}) creatureNameInput!: string;
+
+
+  onClose(){
+    this.isDisplayOpen = !this.isDisplayOpen;
+    return this.isDisplayOpen;
+  }
+
 }

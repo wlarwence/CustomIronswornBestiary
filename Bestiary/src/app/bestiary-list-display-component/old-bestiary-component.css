@@ -1,0 +1,52 @@
+
+div {
+   
+   flex-flow: column wrap;
+}
+
+article {
+    width: 10rem;
+    display: inline-flex;
+   
+}
+
+article li{
+   
+    border-style: solid;
+    border-radius: 0.6rem;
+    border-width: 0.2rem;
+    border-color: black;
+    background-color: aquamarine;
+    font-weight: bolder;
+    font-size: medium;
+    margin: 0.4rem;
+    border-radius: 1.2rem;
+    padding: 0.6rem;
+
+}
+
+article li:hover, section h1:hover{
+    background-color: aqua;
+}
+
+section {
+
+    flex-flow: column;
+    display: inline-flex;
+
+}
+
+section h1 {
+
+    border-style: solid;
+    border-radius: 0.8rem;
+    border-width: 0.2rem;
+    border-color: black;
+    background-color: aquamarine;
+
+}
+
+
+
+
+

@@ -1,1 +1,121 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: almendra-display;
+    src: url(https://fonts.google.com/specimen/almendra-display);
+    font-weight: bold;
+}
+
+main{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+
+.almendra-display-regular {
+  font-family: "Almendra Display", serif;
+  font-weight: bolder;
+  font-style: normal;
+  font-size: 32px;
+}
+
+
+body {
+    background-color: #D1C8AD;
+    width: auto;
+    cursor: pointer;
+}
+
+title{
+    font-family: Almendra Display;
+}
+
+
+p{
+    font-family: Almendra Display;
+    color: #7500fa;
+}
+
+h1, h2, p{
+   font-family: Almendra Display; 
+}
+
+.flex-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.flex-container > div {
+    
+   margin: 0.625rem;
+  padding: 1.25rem; 
+}
+
+
+article {
+     max-width: 33%;
+     font-family: almendra-display;
+     
+}
+
+.creature-info{
+    margin-left: 1rem;
+    margin-right: -1rem;
+    margin-top: 1rem;
+}
+
+/*
+form {
+    
+    margin-left: 60rem;
+    margin-right: -60rem;
+    margin-top: -10rem;
+    }
+
+    button {
+    margin-left: 60rem;
+    margin-right: -60rem;
+
+    }*/
+
+
+/* Mobile view*/
+@media (min-resolution: 1.1dppx) or (max-width:1200px){
+    
+    main{
+       min-width: 100%;
+    }
+    
+    
+    .flex-container{
+
+        align-items: center;
+        flex-flow: column wrap;
+        
+    }
+
+    article{
+        
+        
+        max-width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+     .creature-info{
+        
+        margin-top: 1rem;
+        margin: auto;
+        
+     }
+    
+    form  {
+    max-width: 100%;
+    }
+
+    h1, h2, p{
+   font-family: Arial, Helvetica, sans-serif;
+   min-width: 100%;
+}
+    
+}
+
+

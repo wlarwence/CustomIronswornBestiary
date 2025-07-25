@@ -1,0 +1,33 @@
+h1 {
+    flex-flow: column wrap;
+  background-color: #eee;
+ 
+  border-bottom: solid;
+
+  color: #444;
+  margin-bottom: 0rem;
+  padding: 1.125rem;
+  text-align: left;
+  outline: none;
+
+}
+
+ h1:hover {
+  background-color: #ccc; 
+}
+
+h2{
+  padding: 1.125rem;
+  
+  
+  border-bottom: solid;
+  background-color: rgba(175, 161, 161, 0.781);
+  overflow: hidden;
+  margin: 0rem;
+}
+
+ h2:hover {
+  background-color: rgba(131, 120, 120, 0.781); 
+}
+
+
