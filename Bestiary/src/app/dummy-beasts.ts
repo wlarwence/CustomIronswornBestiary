@@ -11,6 +11,36 @@ export const dummyBeasts =  [
         desc: 'Another people sailed to the Ironlands from the Old World long before our kin settled here.'
 
     }, 
+     {
+        species: 'Ironlanders',
+        name: 'Broken2',
+        rank: 'Troublesome (3 Progress per harm; Inflicts 1 harm)',
+        featurestraits: ['Crazed skin', 'Painted skin', 'Feral screams', 'Scavenged clothing and weapons'],
+        drives: ['Show my power', 'Share my pain'],
+        tactics: ['Spring from hiding', 'ferocious attacks'],
+        desc: 'Another people sailed to the Ironlands from the Old World long before our kin settled here.'
+
+    }, 
+     {
+        species: 'Ironlanders',
+        name: 'Broken3',
+        rank: 'Troublesome (3 Progress per harm; Inflicts 1 harm)',
+        featurestraits: ['Crazed skin', 'Painted skin', 'Feral screams', 'Scavenged clothing and weapons'],
+        drives: ['Show my power', 'Share my pain'],
+        tactics: ['Spring from hiding', 'ferocious attacks'],
+        desc: 'Another people sailed to the Ironlands from the Old World long before our kin settled here.'
+
+    }, 
+     {
+        species: 'Ironlanders',
+        name: 'Broken4',
+        rank: 'Troublesome (3 Progress per harm; Inflicts 1 harm)',
+        featurestraits: ['Crazed skin', 'Painted skin', 'Feral screams', 'Scavenged clothing and weapons'],
+        drives: ['Show my power', 'Share my pain'],
+        tactics: ['Spring from hiding', 'ferocious attacks'],
+        desc: 'Another people sailed to the Ironlands from the Old World long before our kin settled here.'
+
+    }, 
 
      {
         species: 'Ironlanders',

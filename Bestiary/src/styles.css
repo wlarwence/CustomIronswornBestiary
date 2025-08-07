@@ -5,11 +5,15 @@
     font-weight: bold;
 }
 
+
 main{
     display: flex;
     flex-flow: row wrap;
 }
 
+li {
+    list-style-position: inside;
+}
 
 .almendra-display-regular {
   font-family: "Almendra Display", serif;
@@ -37,11 +41,33 @@ p{
 
 h1, h2, p{
    font-family: Almendra Display; 
+   animation: growDown 300ms ease-in-out forwards;
+   position: relative;
+
+   
+}
+
+
+
+@keyframes growDown {
+     0% {
+        transform: scaleY(0);
+        
+    }
+     80% {
+        transform: scaleY(1.1);
+        
+    }
+    100% {
+        transform: scaleY(1);
+        
+    }
 }
 
 .flex-container{
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row wrap;     
+        
 }
 
 .flex-container > div {
@@ -53,8 +79,7 @@ h1, h2, p{
 
 article {
      max-width: 33%;
-     font-family: almendra-display;
-     
+     font-family: almendra-display;     
 }
 
 .creature-info{
@@ -63,20 +88,16 @@ article {
     margin-top: 1rem;
 }
 
-/*
-form {
+.display-component{
     
-    margin-left: 60rem;
-    margin-right: -60rem;
-    margin-top: -10rem;
-    }
+    border: 0.2rem;
+    border-style: solid;
+    border-color: black;
+    flex-flow: column wrap;
+    background-color: white;
+     }
 
-    button {
-    margin-left: 60rem;
-    margin-right: -60rem;
-
-    }*/
-
+     
 
 /* Mobile view*/
 @media (min-resolution: 1.1dppx) or (max-width:1200px){
@@ -88,33 +109,43 @@ form {
     
     .flex-container{
 
-        align-items: center;
         flex-flow: column wrap;
+        
+        min-width: 80%;
+        max-width: 80%;
         
     }
 
     article{
-        
-        
-        max-width: 100%;
-        font-family: Arial, Helvetica, sans-serif;
+        min-width: 100%;
     }
 
      .creature-info{
         
+        border-top: none;
         margin-top: 1rem;
         margin: auto;
+        min-width: 100%;
         
      }
-    
-    form  {
-    max-width: 100%;
-    }
 
+     .display-component{
+    
+    border: 0.2rem;
+    border-style: solid;
+    border-top: none;
+    border-color: black;
+    flex-flow: column wrap;
+    background-color: white;
+     }
+    
     h1, h2, p{
-   font-family: Arial, Helvetica, sans-serif;
+   
    min-width: 100%;
+   
 }
+
+
     
 }
 

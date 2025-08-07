@@ -1,20 +1,4 @@
-form{
-    
-    border: 0.2rem;
-    border-style: solid;
-    border-color: black;
-    flex-flow: column wrap;
-    background-color: white;
-   
-  
-}
 
 
-li {
-    list-style-position: inside;
-}
 
-p {
-    max-width: 30rem;
-}
 

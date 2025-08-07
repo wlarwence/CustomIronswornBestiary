@@ -1,14 +1,17 @@
-<form class="flex-container">
+<div class="flex-container display-component" >
     <h1>
         {{creatureNameInput}}
     </h1>
 
     @for (creature of creatureList; track $index) {
         @if (creature.name === creatureNameInput) {
-            <li>Rank: {{creature.rank}}</li>
-            <li>Features/Traits: {{creature.featurestraits}}</li>
-            <li>Drives: {{creature.drives}}</li>
-            <p>{{creature.desc}}</p>
+            <ul>
+                <li>Rank: {{creature.rank}}</li>
+                <li>Features/Traits: {{creature.featurestraits}}</li>
+                <li>Drives: {{creature.drives}}</li>
+            </ul>
+
+             <p>{{creature.desc}}</p>
         }
     }
-</form>
+</div>

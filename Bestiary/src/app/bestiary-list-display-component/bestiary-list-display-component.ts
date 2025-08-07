@@ -24,7 +24,9 @@ export class BestiaryListDisplayComponent {
   openCreatureInfo = false;
   currentSpecies = "";
   displayCreatureName = "";
+  currentCreatureCount = 0;
   isShowingCreatureSublist = false;
+  creatureCount! : any;
   @Output() creatureNameOutput = new EventEmitter(); 
 
 
@@ -60,14 +62,36 @@ export class BestiaryListDisplayComponent {
       this.isShowingCreatureSublist = true;
      }
 
+    
+
     this.currentSpecies = species;
     return this.isShowingCreatureSublist;
+
    }
 
    updateWindowSize(){
     window.addEventListener("resize", this.updateWindowSize);
     this.screenWidth = window.innerWidth;
    }
+
+
+   getNumberOfCreatures(species: string){
+
+    if(species === this.currentSpecies){
+      this.currentCreatureCount += 1;
+    }
+    else{
+      this.currentCreatureCount = 0;
+    }
+
+    this.creatureCount = document.querySelector(':root')
+  
+    this.creatureCount.style.setProperty('--creatureCount', this.currentCreatureCount);
+
+
+    return this.currentCreatureCount;
+   }
+
 
   
 }

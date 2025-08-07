@@ -8,12 +8,15 @@
         <h1 (click)="displayCreatureSublist(species)" (click)="updateWindowSize()">{{species}}</h1>
         @if (isShowingCreatureSublist) {
                 @for (creature of dummyBeastsList; track $index) {
+                        
                     @if (creature.species === currentSpecies && currentSpecies === species) {
-                        <h2 (click)="displayCreatureInfo(creature.name)">{{creature.name}}</h2> 
+                        <h2 class="creature-name-{{currentCreatureCount}}" (click)="displayCreatureInfo(creature.name)">{{creature.name}}</h2> 
                         @if (screenWidth <1200 && displayCreatureName === creature.name && openCreatureInfo === true) {
                             <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" (click)="onReturn()"></app-creature-display-component>
-                        }                      
+                        }  
+
                     }
+                    
                 }
             }
     </article>
@@ -22,7 +25,8 @@
 
 </div>
 
-    
+
+
     <article class="creature-info">
          
     @if (openCreatureInfo === true && screenWidth >= 1200) {
