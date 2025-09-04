@@ -1,1 +1,1 @@
-export const speciesList = ['Ironlanders', 'Firstborn', 'Animals', 'Beasts', 'Horrors'];
+export const speciesList = ['Ironlanders', 'Firstborn', 'Animals', 'Beasts', 'Horrors', 'Anomalies'];

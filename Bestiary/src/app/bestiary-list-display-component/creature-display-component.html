@@ -1,4 +1,7 @@
-<div class="flex-container display-component" >
+   @if (isCreatureInfoShowingInput) 
+   {
+<div class="display-component">
+
     <h1>
         {{creatureNameInput}}
     </h1>
@@ -9,9 +12,14 @@
                 <li>Rank: {{creature.rank}}</li>
                 <li>Features/Traits: {{creature.featurestraits}}</li>
                 <li>Drives: {{creature.drives}}</li>
+                <li>Tatics: {{creature.tactics}}</li>
             </ul>
 
              <p>{{creature.desc}}</p>
         }
     }
+    
 </div>
+
+}
+

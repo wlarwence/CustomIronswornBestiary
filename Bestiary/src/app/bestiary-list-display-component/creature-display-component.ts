@@ -16,11 +16,12 @@ export class CreatureDisplayComponent {
   
   i = 0;
   @Input ({required: true}) creatureNameInput!: string;
+  @Input ({required: true}) isCreatureInfoShowingInput!: Boolean;
 
 
   onClose(){
-    this.isDisplayOpen = !this.isDisplayOpen;
-    return this.isDisplayOpen;
+    this.isCreatureInfoShowingInput= !this.isCreatureInfoShowingInput;
+    return this.isCreatureInfoShowingInput;
   }
 
 }

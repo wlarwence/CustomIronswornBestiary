@@ -5,22 +5,136 @@
     font-weight: bold;
 }
 
+/*FONT*/
+.almendra-display-regular {
+  font-family: "Almendra Display", serif;
+  font-weight: bolder;
+  font-style: normal;
+  font-size: 2rem;
+}
+
+
+
+/*Main*/
 
 main{
-    display: flex;
-    flex-flow: row wrap;
+    width: 87.5rem;
+    max-width: 87.5rem;
+    
+    padding-left: 13rem;
 }
+
+
+main > hr {
+    width: 93.5rem;
+}
+
+
+
+/*Main-Component (manages the 'bestiary' title and border)*/
+.main-component {
+      
+      width: 89.5rem;
+      border-radius: 1rem;
+      padding-left: 14.5rem;
+     
+}
+
+.main-component > h1{
+    font-size:5.25rem;
+    text-align: center;
+    font-weight: lighter;
+    color: black;
+}
+
+
+.main-component > hr{
+    border-top: solid;
+    border-bottom: none;
+    background-color: bisque;
+    width:78.5rem;
+    padding-left: 14rem;
+    position: absolute;
+    top: 12rem;
+    left: 13.8rem;
+    
+}
+
+
+/* FLEX-CONTAINER*/
+
+.flex-container{
+    
+    display: flex;
+    margin-left: 2rem;                                                                 
+    padding-left: 20rem;
+    background-color: #eee;
+    border-bottom: solid;
+    width: 68.8rem;
+    
+    
+}
+
+.flex-container > div {
+    
+   margin: 0.625rem;
+  padding: 1.25rem; 
+  
+}
+
+/*.SPECIES*/
+.species{
+    position: relative;
+    
+}
+
+ .species > h1 {
+  background-color: #eee;
+  color: #444;
+  margin-bottom: 0rem;
+  padding: 1.125rem;
+  text-align: left;
+  outline: none;
+  font-size: 1.5rem;
+  width: 8rem;
+  margin-top: 0rem;
+
+
+}
+
+.species > h1:hover {
+  background-color: #ccc; 
+}
+
+.species > h2{
+    animation: growDown 300ms ease-in-out forwards;
+   
+}
+
+
+.creature-dropdown{
+    position: absolute;
+}
+
+h2{
+  padding: 1.125rem;
+  border-bottom: solid;
+  background-color: rgba(175, 161, 161, 0.781);
+  overflow: hidden;
+  margin: 0rem;
+  width: 8rem;
+}
+
+ h2:hover {
+  background-color: rgba(131, 120, 120, 0.781); 
+}
+
 
 li {
     list-style-position: inside;
 }
 
-.almendra-display-regular {
-  font-family: "Almendra Display", serif;
-  font-weight: bolder;
-  font-style: normal;
-  font-size: 32px;
-}
+
 
 
 body {
@@ -35,20 +149,63 @@ title{
 
 
 p{
-    font-family: Almendra Display;
     color: #7500fa;
+    
 }
 
 h1, h2, p{
    font-family: Almendra Display; 
-   animation: growDown 300ms ease-in-out forwards;
-   position: relative;
-
-   
 }
 
 
+/*DISPLAY-COMPONENT*/
 
+.display-component{
+    
+    /* position: absolute;
+    z-index: -1;
+    left: -0.5rem;
+    top: 23.25rem;
+    */
+    margin-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;  
+    border: 0.2rem;
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    background-color: white;
+    width: 87.5rem;
+    
+    
+   
+}
+
+.display-component > h1, p {
+    padding-left: 2rem;
+    
+   
+}
+
+.display-component > li{
+     padding-right: 100rem;
+     
+}
+
+.display-component > h2 {
+font-size: 2rem;
+}
+
+.display-component > li{
+    margin-left: 0.5rem;
+}
+.display-component > p{
+    font-size: 1rem;
+}
+
+
+/*KEYFRAME ANIMATION*/
 @keyframes growDown {
      0% {
         transform: scaleY(0);
@@ -64,17 +221,17 @@ h1, h2, p{
     }
 }
 
-.flex-container{
-    display: flex;
-    flex-flow: row wrap;     
-        
+
+.bottom-border{
+    border-top: solid;
+    width: 89.5rem;
+    border-radius: 1rem;
+    padding-top: 4rem;
 }
 
-.flex-container > div {
-    
-   margin: 0.625rem;
-  padding: 1.25rem; 
-}
+
+
+
 
 
 article {
@@ -88,14 +245,18 @@ article {
     margin-top: 1rem;
 }
 
-.display-component{
-    
-    border: 0.2rem;
-    border-style: solid;
-    border-color: black;
-    flex-flow: column wrap;
-    background-color: white;
-     }
+
+/*TRADEMARK*/
+.trademark{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-style: normal;
+    color: black;
+    align-items: center;
+    text-align: center;
+}
+
+
 
      
 
@@ -109,7 +270,7 @@ article {
     
     .flex-container{
 
-        flex-flow: column wrap;
+        
         
         min-width: 80%;
         max-width: 80%;
@@ -122,9 +283,6 @@ article {
 
      .creature-info{
         
-        border-top: none;
-        margin-top: 1rem;
-        margin: auto;
         min-width: 100%;
         
      }
@@ -133,9 +291,7 @@ article {
     
     border: 0.2rem;
     border-style: solid;
-    border-top: none;
     border-color: black;
-    flex-flow: column wrap;
     background-color: white;
      }
     

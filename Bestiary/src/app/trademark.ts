@@ -1,0 +1,1 @@
+export const trademark = 'Copyright (c) 2025 C Hypercube @ WTKL. This work is based on Ironsworn, created by Shawn Tomkin, and licensed for our use under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license (https://creativecommons.org/licenses/by-nc-sa/4.0).';
