@@ -1,10 +1,15 @@
-import { Component, Input, Output, EventEmitter, HostListener, OnInit, input} from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, OnInit, input, signal, inject, DestroyRef} from '@angular/core';
 import { dummyBeasts } from '../dummy-beasts';
 import { speciesList } from '../species-list';
 import { BestiaryEntry } from '../bestiary-entry.model';
 import { CreatureDisplayComponent } from './creature-display-component';
 import { trademark } from '../trademark';
 import { response } from 'express';
+import { HttpClient } from '@angular/common/http';
+import { subscribeOn } from 'rxjs';
+import { environment } from '../../environments/environment';
+
+
 
 
 
@@ -20,51 +25,6 @@ import { response } from 'express';
 export class BestiaryListDisplayComponent implements OnInit {
   screenHeight!: number;
   screenWidth!: number;
-  
-  creatureJSON= require('../JSON Files/specieslists-just_species_and_beasts.json');
-
-
-    ngOnInit(): void {
-    
-      this.bestiarySpeciesList = [];
-      this.creatureList= [];
-      this.currentSpeciesListCount = 0;
-      this.creatureListCount = 0;
-      for (var key in this.creatureJSON){
-        this.bestiarySpeciesList[this.currentSpeciesListCount] = key;
-        this.currentSpeciesListCount++;
-        //console.log(this.bestiarySpeciesList)
-    
-    }
-
-    const testname = this.creatureJSON.Ironlanders[0];
-
-    //const test = JSON.stringify(this.creatureJSON);
-    //const test2 = JSON.parse(test);
-
-   // console.log(this.creatureJSON.values);
-     for (var key in this.creatureJSON){
-      //console.log(key);
-      for (var creatureKey in this.creatureJSON[key]){
-       // console.log("this is the current creature: " + creatureKey);
-        dummyBeasts.push({species: key, name: creatureKey, rank: "", featurestraits: [], drives: [], tactics: [], desc: ""});
-      }
-      
-      
-    }
-        
-    }
-
-    returnValues(key: string){
-
-      
-      return this.creatureJSON[key];
-
-    }
-
-
-  
-// dummyBeastList!: BestiaryEntry;
   dummyBeastsList = dummyBeasts;
   creatureList!: string[];
   creatureListCount = 0;
@@ -80,13 +40,66 @@ export class BestiaryListDisplayComponent implements OnInit {
   currentParsedJSONData = dummyBeasts;
   @Output() creatureNameOutput = new EventEmitter(); 
   @Output() isCreatureInfoShowingOutput = new EventEmitter();
+
+  testSignal = signal<object | undefined>(undefined);
+
+
+  //The JSON for the creature info+ the variables to hold teh current creature info
+  creatureJSON!: any;
+  natureJSON!: any;
+  currentCreatureDesc!: string;
+  currentCreatureDrives!: string;
+  currentCreatureFeatures!: string;
+  currentCreatureName!: string;
+  currentCreatureNature!: string;
+  currentCreatureRank!: string;
+  currentCreatureTactics!: string;
   
 
- 
+  private httpClient = inject(HttpClient);
+  private destroyRef = inject(DestroyRef);
+
+
+  
+  private testVariable = environment;
+   
+
+
+  //JSON of the natures, and the different creatures per nature as an object
+  //natureJSON= require('../JSON Files/specieslists-just_species_and_beasts.json');
+
+
+    ngOnInit(){
+     
+      this.bestiarySpeciesList = [];
+      for (var key in this.natureJSON){
+                this.bestiarySpeciesList[this.currentSpeciesListCount] = key;
+                this.currentSpeciesListCount++;
+       }
+    
+      const sub2 = this.httpClient.get(this.testVariable.PORT_VAR)
+        .subscribe({
+            next: (resp2Data) => {
+              this.natureJSON = resp2Data;
+               for (var key in resp2Data){
+                
+                this.bestiarySpeciesList.push(key);
+              }              
+            }
+        });
+        this.destroyRef.onDestroy(() => {
+          sub2.unsubscribe();
+        }); 
+    }
+
+
+    
 
    displaySublist(species: string){
     const filteredList = this.dummyBeastsList.filter((dbl) => dbl.species === species);
+    //console.log("the test value is " + this.testNode);
     return filteredList;
+    
     
    }
 

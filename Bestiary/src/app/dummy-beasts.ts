@@ -1,14 +1,12 @@
- 
-
 export const dummyBeasts =  [
 
     {
         species: '',
         name: '',
         rank: '',
-        featurestraits: [],
-        drives: [],
-        tactics: [],
+        featurestraits: [''],
+        drives: [''],
+        tactics: [''],
         desc: ''
 
     }
