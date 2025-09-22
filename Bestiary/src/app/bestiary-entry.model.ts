@@ -1,9 +1,9 @@
 export interface BestiaryEntry{
     species: string;
+    creatureNameKey: string;
     name: string;
     rank: string;
-    traits: string[];
-    features: string[];
+    featurestraits: string[];
     drives: string[];
     tactics: string[];
     desc: string;

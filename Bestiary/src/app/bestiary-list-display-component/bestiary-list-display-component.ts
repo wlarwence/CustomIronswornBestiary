@@ -1,16 +1,10 @@
-import { Component, Input, Output, EventEmitter, HostListener, OnInit, input, signal, inject, DestroyRef} from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, inject, DestroyRef} from '@angular/core';
 import { dummyBeasts } from '../dummy-beasts';
-import { speciesList } from '../species-list';
 import { BestiaryEntry } from '../bestiary-entry.model';
 import { CreatureDisplayComponent } from './creature-display-component';
 import { trademark } from '../trademark';
-import { response } from 'express';
 import { HttpClient } from '@angular/common/http';
-import { subscribeOn } from 'rxjs';
-import { environment } from '../../environments/environment';
-
-
-
+import { CREATURE_URL_SOURCE, environment } from '../../environments/environment';
 
 
 
@@ -23,105 +17,141 @@ import { environment } from '../../environments/environment';
 
 
 export class BestiaryListDisplayComponent implements OnInit {
+ //The screen width and height
   screenHeight!: number;
   screenWidth!: number;
-  dummyBeastsList = dummyBeasts;
-  creatureList!: string[];
-  creatureListCount = 0;
+
+  //Beasts holds all the beast and selecteBeast is the currently selected beast
+  Beasts = dummyBeasts;
+  selectedBeast! : BestiaryEntry;
+ 
+  //A string array to hold the names of all the natures (species: deprecated)
   bestiarySpeciesList!: string[];
   dummyTrademark = trademark;
-  openCreatureInfo = false;
+
+  //Variable to determine if the creature info window is open
+  isCreatureInfoWindowOpen = false;
+
+  //Which nature (species: deprecated) is currently selected
   currentSpecies = "";
+
+  //which creature is currently selected
   displayCreatureName = "";
-  currentCreatureCount = 0;
-  currentSpeciesListCount = 0;
+  
+
+  //A variable to determine if the sublist of creatures is currently being shown
   isShowingCreatureSublist = false;
-  creatureCount! : any;
-  currentParsedJSONData = dummyBeasts;
+  
+
   @Output() creatureNameOutput = new EventEmitter(); 
   @Output() isCreatureInfoShowingOutput = new EventEmitter();
 
-  testSignal = signal<object | undefined>(undefined);
 
 
-  //The JSON for the creature info+ the variables to hold teh current creature info
+
+  //The JSON for the creature info+ the variables to hold the current creature info
   creatureJSON!: any;
   natureJSON!: any;
-  currentCreatureDesc!: string;
-  currentCreatureDrives!: string;
-  currentCreatureFeatures!: string;
-  currentCreatureName!: string;
-  currentCreatureNature!: string;
-  currentCreatureRank!: string;
-  currentCreatureTactics!: string;
+  
   
 
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
 
+  //Environment variables used for getting the creature natures, as well as the creature information from the specified URLs
+  private natureDevSource= environment;
+  private creatureDevSource = CREATURE_URL_SOURCE;
 
-  
-  private testVariable = environment;
+
+  //Holds the name of the creatures currently selected by the user to ensure that they are not checked again
+  private checkedCreatureList = [''];
+
+  // An integer to check how many times on init was called
+  private initCount = 0;
+
+  //Checks to see if the current creature was already checked, so the user cannot spam click the same creature multiple times
+  private wasCreatureChecked = false;
+ 
    
+  
 
-
-  //JSON of the natures, and the different creatures per nature as an object
-  //natureJSON= require('../JSON Files/specieslists-just_species_and_beasts.json');
-
-
+  //Load in the initial list of natures and creatures gathered from the backend
     ngOnInit(){
-     
+     //An Array to hold the  list of natures (species: deprecated)
       this.bestiarySpeciesList = [];
-      for (var key in this.natureJSON){
-                this.bestiarySpeciesList[this.currentSpeciesListCount] = key;
-                this.currentSpeciesListCount++;
-       }
-    
-      const sub2 = this.httpClient.get(this.testVariable.PORT_VAR)
+        
+      const sub2 = this.httpClient.get(this.natureDevSource.PORT_VAR)
         .subscribe({
             next: (resp2Data) => {
               this.natureJSON = resp2Data;
-               for (var key in resp2Data){
-                
-                this.bestiarySpeciesList.push(key);
-              }              
-            }
-        });
+               for (var natureKey in resp2Data){
+                this.bestiarySpeciesList.push(natureKey);
+                for(var [creatureKey, creatureName] of Object.entries(this.natureJSON[natureKey])){
+                  if(this.initCount < 1){
+                  dummyBeasts.push({species: natureKey, name: creatureKey, rank: "", featurestraits: [], 
+                  drives: [], tactics: [], desc: ""});
+                  
+                  }
+                }  
+              } 
+              
+           }
+       });
+       this.initCount++;
         this.destroyRef.onDestroy(() => {
-          sub2.unsubscribe();
-        }); 
+        sub2.unsubscribe();
+      }); 
     }
 
 
     
 
    displaySublist(species: string){
-    const filteredList = this.dummyBeastsList.filter((dbl) => dbl.species === species);
-    //console.log("the test value is " + this.testNode);
+    const filteredList = this.Beasts.filter((dbl) => dbl.species === species);
     return filteredList;
-    
     
    }
 
    displayCreatureInfo(creatureName: string){
+    this.wasCreatureChecked = false;
+    if (this.wasCreatureChecked == false && !this.checkedCreatureList.includes(creatureName)){
+       const creatureInfoSubscription = this.httpClient.get(this.creatureDevSource.CREATURE_PORT_VAR + creatureName)
+    .subscribe({
+      next:(respData) => {
+        this.creatureJSON = respData;
+        this.Beasts.push({species: this.creatureJSON.nature, name: creatureName, rank: this.creatureJSON.rank, featurestraits: this.creatureJSON.features, 
+        drives: this.creatureJSON.drives, tactics: this.creatureJSON.tactics, desc: this.creatureJSON.description});   
+      }
+    });
     
-    this.openCreatureInfo = true;
+      this.destroyRef.onDestroy(() => {
+      creatureInfoSubscription.unsubscribe();
+      });
+    this.wasCreatureChecked = true;
+    this.checkedCreatureList.push(creatureName);
+    }
+   
+
+    this.isCreatureInfoWindowOpen = true;
     this.displayCreatureName = creatureName;
+
+    
     return creatureName;
    }
 
+   
    isCreatureInfoShowing(){
     return true;
    }
 
 
    onReturn(){
-    this.openCreatureInfo = false;
+    this.isCreatureInfoWindowOpen = false;
    }
 
    displayCreatureSublist(species: string){
-    
-     if(species === this.currentSpecies){
+      
+      if(species === this.currentSpecies){
       this.isShowingCreatureSublist = !this.isShowingCreatureSublist;
      }
 

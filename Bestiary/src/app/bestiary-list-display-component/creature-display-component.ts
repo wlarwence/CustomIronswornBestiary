@@ -1,7 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { dummyBeasts } from '../dummy-beasts';
-import { speciesList } from '../species-list';
-import { BestiaryEntry } from '../bestiary-entry.model';
 
 @Component({
   selector: 'app-creature-display-component',
@@ -14,7 +12,6 @@ export class CreatureDisplayComponent {
   creatureList = dummyBeasts;
   isDisplayOpen = true;
   
-  i = 0;
   @Input ({required: true}) creatureNameInput!: string;
   @Input ({required: true}) isCreatureInfoShowingInput!: Boolean;
 
