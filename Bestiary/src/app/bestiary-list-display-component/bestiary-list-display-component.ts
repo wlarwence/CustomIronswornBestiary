@@ -12,12 +12,12 @@ import { CREATURE_URL_SOURCE, environment } from '../../environments/environment
   selector: 'app-bestiary-list-display-component',
   imports: [CreatureDisplayComponent],
   templateUrl: './bestiary-list-display-component.html',
-  styleUrl: './bestiary-list-display-component.css'
 })
 
 
 export class BestiaryListDisplayComponent implements OnInit {
  //The screen width and height
+  // TODO: remove screenwidth/height, just handle it in CSS @media
   screenHeight!: number;
   screenWidth!: number;
 
@@ -64,13 +64,13 @@ export class BestiaryListDisplayComponent implements OnInit {
 
 
   //Holds the name of the creatures currently selected by the user to ensure that they are not checked again
-  private checkedCreatureList = [''];
+  private checkedCreatureList = ['']; // TODO: write this in a way where this isn't needed
 
   // An integer to check how many times on init was called
-  private initCount = 0;
+  private initCount = 0; //TODO: remove
 
   //Checks to see if the current creature was already checked, so the user cannot spam click the same creature multiple times
-  private wasCreatureChecked = false;
+  private wasCreatureChecked = false; // TODO: see above
  
    
   
@@ -102,15 +102,6 @@ export class BestiaryListDisplayComponent implements OnInit {
         sub2.unsubscribe();
       }); 
     }
-
-
-    
-
-   displaySublist(species: string){
-    const filteredList = this.Beasts.filter((dbl) => dbl.species === species);
-    return filteredList;
-    
-   }
 
    displayCreatureInfo(creatureName: string){
     this.wasCreatureChecked = false;

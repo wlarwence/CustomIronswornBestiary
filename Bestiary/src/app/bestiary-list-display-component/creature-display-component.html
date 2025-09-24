@@ -1,20 +1,18 @@
-   @if (isCreatureInfoShowingInput) 
-   {
-<div class="display-component">
-    <h1>
-        {{creatureNameInput}}
-    </h1>
-    @for (creature of creatureList; track $index) {
-        @if (creature.name === creatureNameInput) {
-            <ul>
-                <li>Rank: {{creature.rank}}</li>
-                <li>Features/Traits: {{creature.featurestraits}}</li>
-                <li>Drives: {{creature.drives}}</li>
-                <li>Tatics: {{creature.tactics}}</li>
-            </ul>
-             <p>{{creature.desc}}</p>
-        }
-    } 
-</div>
+@if (isCreatureInfoShowingInput) {
+    <div class="display-component">
+        <h1>
+            {{creatureNameInput}}
+        </h1>
+        @for (creature of creatureList; track $index) {
+            @if (creature.name === creatureNameInput) {
+                <ul>
+                    <li>Rank: {{creature.rank}}</li>
+                    <li>Features/Traits: {{creature.featurestraits}}</li>
+                    <li>Drives: {{creature.drives}}</li>
+                    <li>Tatics: {{creature.tactics}}</li>
+                </ul>
+                <p>{{creature.desc}}</p>
+            }
+        } 
+    </div>
 }
-
