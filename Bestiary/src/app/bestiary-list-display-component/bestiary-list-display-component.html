@@ -1,7 +1,10 @@
 <main>
+    <!-- TODO: Pull out other parts. I suspect this should be the main point of this class. -->
+    <!-- TODO: the name of this class should be updated to make it more clear what it's for. -->
 <div class="flex-container">
     @for (species of bestiarySpeciesList; track $index) 
     {
+    <!-- TODO: semantically, look up <nav></nav> and use tags used for that instead of article/h1/h2 here-->
     <article class= "species" >
         <h1 (click)="displayCreatureSublist(species)" (click)="updateWindowSize()" >{{species}}</h1>
         @if (isShowingCreatureSublist) {
@@ -21,6 +24,7 @@
     }
 </div>
 <article class="creature-info">   
+    <!-- TODO: either this should manage whether the window is showing, or creature display component should. Having 2 @ifs makes no sense. -->
     @if (isCreatureInfoWindowOpen === true && screenWidth >= 1200) {
         <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" [isCreatureInfoShowingInput]="true" (click)="onReturn()"></app-creature-display-component>
     }
@@ -28,7 +32,3 @@
 <hr/>
 <p class="trademark">{{dummyTrademark}}</p>
 </main>
-
- 
-
-
