@@ -1,7 +1,6 @@
-export const environment = {
-    PORT_VAR: 'https://bestiary-api.c-hypercube.ca/species'
-};
+const BACKEND_API = 'https://bestiary-api.c-hypercube.ca';
 
-export const CREATURE_URL_SOURCE = {
-CREATURE_PORT_VAR:'https://bestiary-api.c-hypercube.ca/beast/'
+export const environment = {
+    NATURE_ENDPOINT: BACKEND_API + '/species',
+    CREATURE_ENDPOINT: BACKEND_API + '/beast',
 };

@@ -2,14 +2,14 @@
     <!-- TODO: Pull out other parts. I suspect this should be the main point of this class. -->
     <!-- TODO: the name of this class should be updated to make it more clear what it's for. -->
 <div class="flex-container">
-    @for (species of bestiarySpeciesList; track $index) 
+    @for (species of natureList(); track $index) 
     {
     <!-- TODO: semantically, look up <nav></nav> and use tags used for that instead of article/h1/h2 here-->
     <article class= "species" >
         <h1 (click)="displayCreatureSublist(species)" (click)="updateWindowSize()" >{{species}}</h1>
         @if (isShowingCreatureSublist) {
             <div class= "creature-dropdown">
-                @for (creature of creatureList; track $index) {
+                @for (creature of creatureList(); track $index) {
                         
                     @if (creature.species === currentSpecies && currentSpecies === species) {
                         <h2 class="creature-name" (click)="displayCreatureInfo(creature.name || '')" >{{creature.name}}</h2> 
