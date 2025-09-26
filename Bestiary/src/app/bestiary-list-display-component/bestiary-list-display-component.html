@@ -9,10 +9,10 @@
         <h1 (click)="displayCreatureSublist(species)" (click)="updateWindowSize()" >{{species}}</h1>
         @if (isShowingCreatureSublist) {
             <div class= "creature-dropdown">
-                @for (creature of Beasts; track $index) {
+                @for (creature of creatureList; track $index) {
                         
                     @if (creature.species === currentSpecies && currentSpecies === species) {
-                        <h2 class="creature-name" (click)="displayCreatureInfo(creature.name)" >{{creature.name}}</h2> 
+                        <h2 class="creature-name" (click)="displayCreatureInfo(creature.name || '')" >{{creature.name}}</h2> 
                         @if (screenWidth <1200 && displayCreatureName === creature.name && isCreatureInfoWindowOpen === true) {
                             <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" [isCreatureInfoShowingInput]="true"></app-creature-display-component>
                         }  

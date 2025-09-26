@@ -1,10 +1,10 @@
 import { Component, Output, EventEmitter, OnInit, inject, DestroyRef} from '@angular/core';
-import { dummyBeasts } from '../dummy-beasts';
 import { BestiaryEntry } from '../bestiary-entry.model';
 import { CreatureDisplayComponent } from './creature-display-component';
 import { trademark } from '../trademark';
 import { HttpClient } from '@angular/common/http';
 import { CREATURE_URL_SOURCE, environment } from '../../environments/environment';
+import { TomeOfInfiniteKnowledgeService } from './tome-of-infinite-knowledge.service';
 
 
 
@@ -21,8 +21,8 @@ export class BestiaryListDisplayComponent implements OnInit {
   screenHeight!: number;
   screenWidth!: number;
 
-  //Beasts holds all the beast and selecteBeast is the currently selected beast
-  Beasts = dummyBeasts;
+  //creatureList holds all the beast and selecteBeast is the currently selected beast
+  creatureList: BestiaryEntry[] = [];
   selectedBeast! : BestiaryEntry;
  
   //A string array to hold the names of all the natures (species: deprecated)
@@ -57,6 +57,7 @@ export class BestiaryListDisplayComponent implements OnInit {
 
   private httpClient = inject(HttpClient);
   private destroyRef = inject(DestroyRef);
+  private tomeOfInfiniteKnowledgeService = inject(TomeOfInfiniteKnowledgeService);
 
   //Environment variables used for getting the creature natures, as well as the creature information from the specified URLs
   private natureDevSource= environment;
@@ -77,30 +78,7 @@ export class BestiaryListDisplayComponent implements OnInit {
 
   //Load in the initial list of natures and creatures gathered from the backend
     ngOnInit(){
-     //An Array to hold the  list of natures (species: deprecated)
-      this.bestiarySpeciesList = [];
-        
-      const sub2 = this.httpClient.get(this.natureDevSource.PORT_VAR)
-        .subscribe({
-            next: (resp2Data) => {
-              this.natureJSON = resp2Data;
-               for (var natureKey in resp2Data){
-                this.bestiarySpeciesList.push(natureKey);
-                for(var [creatureKey, creatureName] of Object.entries(this.natureJSON[natureKey])){
-                  if(this.initCount < 1){
-                  dummyBeasts.push({species: natureKey, name: creatureKey, rank: "", featurestraits: [], 
-                  drives: [], tactics: [], desc: ""});
-                  
-                  }
-                }  
-              } 
-              
-           }
-       });
-       this.initCount++;
-        this.destroyRef.onDestroy(() => {
-        sub2.unsubscribe();
-      }); 
+      this.creatureList = this.tomeOfInfiniteKnowledgeService.fetchCreatureList();
     }
 
    displayCreatureInfo(creatureName: string){
@@ -110,8 +88,9 @@ export class BestiaryListDisplayComponent implements OnInit {
     .subscribe({
       next:(respData) => {
         this.creatureJSON = respData;
-        this.Beasts.push({species: this.creatureJSON.nature, name: creatureName, rank: this.creatureJSON.rank, featurestraits: this.creatureJSON.features, 
-        drives: this.creatureJSON.drives, tactics: this.creatureJSON.tactics, desc: this.creatureJSON.description});   
+        // TODO: revisit the type casting
+        this.creatureList.push({species: this.creatureJSON.nature, name: creatureName, rank: this.creatureJSON.rank, featurestraits: this.creatureJSON.features, 
+        drives: this.creatureJSON.drives, tactics: this.creatureJSON.tactics, desc: this.creatureJSON.description} as BestiaryEntry);   
       }
     });
     

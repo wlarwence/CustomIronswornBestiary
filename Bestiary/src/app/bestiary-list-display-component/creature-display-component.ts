@@ -1,5 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { dummyBeasts } from '../dummy-beasts';
+import { BestiaryEntry } from '../bestiary-entry.model';
 
 @Component({
   selector: 'app-creature-display-component',
@@ -8,7 +8,7 @@ import { dummyBeasts } from '../dummy-beasts';
 })
 export class CreatureDisplayComponent {
 
-  creatureList = dummyBeasts;
+  creatureList: BestiaryEntry[] = [];
   isDisplayOpen = true; /* TODO: unused, remove. */
   
   @Input ({required: true}) creatureNameInput!: string;
