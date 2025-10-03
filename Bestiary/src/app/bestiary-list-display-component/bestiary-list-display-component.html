@@ -1,34 +1,24 @@
 <main>
-    <!-- TODO: Pull out other parts. I suspect this should be the main point of this class. -->
-    <!-- TODO: the name of this class should be updated to make it more clear what it's for. -->
 <div class="flex-container">
-    @for (species of natureList(); track $index) 
-    {
-    <!-- TODO: semantically, look up <nav></nav> and use tags used for that instead of article/h1/h2 here-->
-    <article class= "species" >
-        <h1 (click)="displayCreatureSublist(species)" (click)="updateWindowSize()" >{{species}}</h1>
-        @if (isShowingCreatureSublist) {
+    @for (item of natureMenuData | keyvalue; track $index) {
+    <nav class= "species" > 
+        <ol (click)="displayCreatureDropdown(item.key)">{{item.key}}</ol>
+        @if(isCreatureDropdownVisible){
             <div class= "creature-dropdown">
-                @for (creature of creatureList(); track $index) {
-                        
-                    @if (creature.species === currentSpecies && currentSpecies === species) {
-                        <h2 class="creature-name" (click)="displayCreatureInfo(creature.name || '')" >{{creature.name}}</h2> 
-                        @if (screenWidth <1200 && displayCreatureName === creature.name && isCreatureInfoWindowOpen === true) {
-                            <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" [isCreatureInfoShowingInput]="true"></app-creature-display-component>
-                        }  
-                    } 
+                @for (creature of item.value | keyvalue; track $index) {
+                    @if(item.key === currentSelectedNature){
+                        <ul class="creature-name" (click)="displayCreatureInfo(creature.key)" >{{creature.value}}</ul> 
+                    }     
                 }
             </div>
-            }      
-    </article>
+        }
+    </nav>
     }
 </div>
-<article class="creature-info">   
-    <!-- TODO: either this should manage whether the window is showing, or creature display component should. Having 2 @ifs makes no sense. -->
-    @if (isCreatureInfoWindowOpen === true && screenWidth >= 1200) {
-        <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" [isCreatureInfoShowingInput]="true" (click)="onReturn()"></app-creature-display-component>
+<article class="creature-info" (click)="onClose()">
+    @if(isCreatureInfoShowing){
+        <app-creature-display-component [creatureNameInput]="selectedCreature"></app-creature-display-component> 
     }
 </article>
-<hr/>
 <p class="trademark">{{dummyTrademark}}</p>
 </main>

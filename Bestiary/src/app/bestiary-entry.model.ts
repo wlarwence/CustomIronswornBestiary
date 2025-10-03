@@ -1,5 +1,5 @@
 export interface BestiaryEntry{
-    species?: string;
+    nature?: string;
     creatureNameKey?: string;
     name?: string;
     rank?: string;

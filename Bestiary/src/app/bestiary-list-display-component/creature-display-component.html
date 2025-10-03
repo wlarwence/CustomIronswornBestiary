@@ -1,18 +1,16 @@
-@if (isCreatureInfoShowingInput) {
     <div class="display-component">
+        @for(creatureInfo of creatureNameInput; track $index){
         <h1>
-            {{creatureNameInput}}
+            {{creatureInfo.name}}
         </h1>
-        @for (creature of creatureList; track $index) {
-            @if (creature.name === creatureNameInput) {
-                <ul>
-                    <li>Rank: {{creature.rank}}</li>
-                    <li>Features/Traits: {{creature.featurestraits}}</li>
-                    <li>Drives: {{creature.drives}}</li>
-                    <li>Tatics: {{creature.tactics}}</li>
-                </ul>
-                <p>{{creature.desc}}</p>
-            }
-        } 
+        <ul>
+            <li>{{creatureInfo.nature}}</li>
+            <li>{{creatureInfo.rank}}</li>
+            <li>{{creatureInfo.featurestraits}}</li>
+            <li>{{creatureInfo.drives}}</li>
+            <li>{{creatureInfo.tactics}}</li>
+        </ul>
+        <p>{{creatureInfo.desc}}<p>
+        }
+        
     </div>
-}

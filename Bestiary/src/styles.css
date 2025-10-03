@@ -40,7 +40,7 @@ main > hr {
      
 }
 
-.main-component > h1{
+.main-component > ol{
     font-size:5.25rem;
     text-align: center;
     font-weight: lighter;
@@ -88,7 +88,7 @@ main > hr {
     
 }
 
- .species > h1 {
+ .species > ol {
   background-color: #eee;
   color: #444;
   margin-bottom: 0rem;
@@ -102,21 +102,26 @@ main > hr {
 
 }
 
-.species > h1:hover {
+.species > ol:hover {
   background-color: #ccc; 
 }
 
-.species > h2{
+.species > ul{
     animation: growDown 300ms ease-in-out forwards;
    
 }
 
 
+/*CREATURE-DROPDOWN*/
 .creature-dropdown{
     position: absolute;
 }
 
-h2{
+.creature-dropdown > ul:hover {
+  background-color: rgba(131, 120, 120, 0.781); 
+}
+
+.creature-dropdown > ul{
   padding: 1.125rem;
   border-bottom: solid;
   background-color: rgba(175, 161, 161, 0.781);
@@ -125,9 +130,7 @@ h2{
   width: 8rem;
 }
 
- h2:hover {
-  background-color: rgba(131, 120, 120, 0.781); 
-}
+ 
 
 
 li {
@@ -153,7 +156,7 @@ p{
     
 }
 
-h1, h2, p{
+ol, ul, p{
    font-family: serif; 
 }
 
@@ -182,7 +185,7 @@ h1, h2, p{
    
 }
 
-.display-component > h1, p {
+.display-component > ol, p {
     padding-left: 2rem;
     
    
@@ -193,8 +196,9 @@ h1, h2, p{
      
 }
 
-.display-component > h2 {
+.display-component > ul {
 font-size: 2rem;
+width: 86.3rem;
 }
 
 .display-component > li{
@@ -295,7 +299,7 @@ article {
     background-color: white;
      }
     
-    h1, h2, p{
+    ol, ul, p{
    
    min-width: 100%;
    
