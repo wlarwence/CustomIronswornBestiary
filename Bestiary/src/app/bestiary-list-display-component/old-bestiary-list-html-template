@@ -1,0 +1,34 @@
+<main>
+<div class="flex-container">
+    @for (species of bestiarySpeciesList; track $index) 
+    {
+    <article class= "species" >
+        <h1 (click)="displayCreatureSublist(species)" (click)="updateWindowSize()" >{{species}}</h1>
+        @if (isShowingCreatureSublist) {
+            <div class= "creature-dropdown">
+                @for (creature of Beasts; track $index) {
+                        
+                    @if (creature.species === currentSpecies && currentSpecies === species) {
+                        <h2 class="creature-name" (click)="displayCreatureInfo(creature.name)" >{{creature.name}}</h2> 
+                        @if (screenWidth <1200 && displayCreatureName === creature.name && isCreatureInfoWindowOpen === true) {
+                            <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" [isCreatureInfoShowingInput]="true"></app-creature-display-component>
+                        }  
+                    } 
+                }
+            </div>
+            }      
+    </article>
+    }
+</div>
+<article class="creature-info">   
+    @if (isCreatureInfoWindowOpen === true && screenWidth >= 1200) {
+        <app-creature-display-component [creatureNameInput]="displayCreatureInfo(displayCreatureName)" [isCreatureInfoShowingInput]="true" (click)="onReturn()"></app-creature-display-component>
+    }
+</article>
+<hr/>
+<p class="trademark">{{dummyTrademark}}</p>
+</main>
+
+ 
+
+

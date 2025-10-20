@@ -40,7 +40,7 @@ main > hr {
      
 }
 
-.main-component > h1{
+.main-component > ol{
     font-size:5.25rem;
     text-align: center;
     font-weight: lighter;
@@ -88,7 +88,7 @@ main > hr {
     
 }
 
- .species > h1 {
+ .species > ol {
   background-color: #eee;
   color: #444;
   margin-bottom: 0rem;
@@ -102,32 +102,38 @@ main > hr {
 
 }
 
-.species > h1:hover {
+.species > ol:hover {
   background-color: #ccc; 
 }
 
-.species > h2{
+.species > ul{
     animation: growDown 300ms ease-in-out forwards;
    
 }
 
 
+/*CREATURE-DROPDOWN*/
 .creature-dropdown{
     position: absolute;
+    column-count: 2;
+    column-gap: 0px;
 }
 
-h2{
+.creature-dropdown > ul:hover {
+  background-color: rgba(131, 120, 120, 0.781); 
+}
+
+.creature-dropdown > ul{
   padding: 1.125rem;
   border-bottom: solid;
   background-color: rgba(175, 161, 161, 0.781);
   overflow: hidden;
   margin: 0rem;
   width: 8rem;
+  text-wrap: nowrap;
 }
 
- h2:hover {
-  background-color: rgba(131, 120, 120, 0.781); 
-}
+ 
 
 
 li {
@@ -153,7 +159,7 @@ p{
     
 }
 
-h1, h2, p{
+ol, ul, p{
    font-family: serif; 
 }
 
@@ -162,11 +168,6 @@ h1, h2, p{
 
 .display-component{
     
-    /* position: absolute;
-    z-index: -1;
-    left: -0.5rem;
-    top: 23.25rem;
-    */
     margin-left: 1rem;
     padding-right: 1rem;
     padding-top: 1.5rem;
@@ -177,12 +178,10 @@ h1, h2, p{
     border-color: black;
     background-color: white;
     width: 87.5rem;
-    
-    
-   
+
 }
 
-.display-component > h1, p {
+.display-component > ol, p {
     padding-left: 2rem;
     
    
@@ -193,8 +192,9 @@ h1, h2, p{
      
 }
 
-.display-component > h2 {
+.display-component > ul {
 font-size: 2rem;
+width: 86.3rem;
 }
 
 .display-component > li{
@@ -252,7 +252,6 @@ article {
     font-weight: bolder;
     font-style: normal;
     color: black;
-    align-items: center;
     text-align: center;
 }
 
@@ -264,43 +263,87 @@ article {
 @media (min-resolution: 1.1dppx) or (max-width:1200px){
     
     main{
-       min-width: 100%;
+        padding-left: 0rem;
+    }
+
+    .main-component{
+        position: relative;
+        padding-left: 0rem;
     }
     
-    
     .flex-container{
+        display: grid;
+        background-color: #D1C8AD;
+        padding-left: 0rem;
+        width: 0rem;
+       
+    }
 
-        
-        
-        min-width: 80%;
-        max-width: 80%;
-        
+    nav{
+        padding-top: 10px;
     }
 
     article{
-        min-width: 100%;
+        
+    }
+
+    .species > ol {
+        width: auto;
     }
 
      .creature-info{
-        
-        min-width: 100%;
-        
      }
+
+     .creature-dropdown{
+        position: relative;
+        column-count: 2;
+     }
+
+     .creature-dropdown > ul {
+        padding-right: 0%;
+    }
+
+   
 
      .display-component{
     
+    margin-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;  
     border: 0.2rem;
     border-style: solid;
+    border-width: 3px;
     border-color: black;
     background-color: white;
-     }
+    width: auto;
+
+}
+
+.display-component > ol, p {
+    padding-left: 2rem;
     
-    h1, h2, p{
-   
-   min-width: 100%;
    
 }
 
+
+.display-component > ul {
+font-size: 20px;
+text-wrap: wrap;
+
+}
+
+.display-component > li{
+    margin-left: 0.5rem;
+}
+.display-component > p{
+    font-size: 10px;
+}
+
+li{
+font-size: 20px;
+     text-wrap: wrap;
+}
 
     
 }
