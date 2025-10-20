@@ -115,6 +115,8 @@ main > hr {
 /*CREATURE-DROPDOWN*/
 .creature-dropdown{
     position: absolute;
+    column-count: 2;
+    column-gap: 0px;
 }
 
 .creature-dropdown > ul:hover {
@@ -128,6 +130,7 @@ main > hr {
   overflow: hidden;
   margin: 0rem;
   width: 8rem;
+  text-wrap: nowrap;
 }
 
  
@@ -165,11 +168,6 @@ ol, ul, p{
 
 .display-component{
     
-    /* position: absolute;
-    z-index: -1;
-    left: -0.5rem;
-    top: 23.25rem;
-    */
     margin-left: 1rem;
     padding-right: 1rem;
     padding-top: 1.5rem;
@@ -180,9 +178,7 @@ ol, ul, p{
     border-color: black;
     background-color: white;
     width: 87.5rem;
-    
-    
-   
+
 }
 
 .display-component > ol, p {
@@ -256,7 +252,6 @@ article {
     font-weight: bolder;
     font-style: normal;
     color: black;
-    align-items: center;
     text-align: center;
 }
 
@@ -268,43 +263,87 @@ article {
 @media (min-resolution: 1.1dppx) or (max-width:1200px){
     
     main{
-       min-width: 100%;
+        padding-left: 0rem;
+    }
+
+    .main-component{
+        position: relative;
+        padding-left: 0rem;
     }
     
-    
     .flex-container{
+        display: grid;
+        background-color: #D1C8AD;
+        padding-left: 0rem;
+        width: 0rem;
+       
+    }
 
-        
-        
-        min-width: 80%;
-        max-width: 80%;
-        
+    nav{
+        padding-top: 10px;
     }
 
     article{
-        min-width: 100%;
+        
+    }
+
+    .species > ol {
+        width: auto;
     }
 
      .creature-info{
-        
-        min-width: 100%;
-        
      }
+
+     .creature-dropdown{
+        position: relative;
+        column-count: 2;
+     }
+
+     .creature-dropdown > ul {
+        padding-right: 0%;
+    }
+
+   
 
      .display-component{
     
+    margin-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;  
     border: 0.2rem;
     border-style: solid;
+    border-width: 3px;
     border-color: black;
     background-color: white;
-     }
+    width: auto;
+
+}
+
+.display-component > ol, p {
+    padding-left: 2rem;
     
-    ol, ul, p{
-   
-   min-width: 100%;
    
 }
 
+
+.display-component > ul {
+font-size: 20px;
+text-wrap: wrap;
+
+}
+
+.display-component > li{
+    margin-left: 0.5rem;
+}
+.display-component > p{
+    font-size: 10px;
+}
+
+li{
+font-size: 20px;
+     text-wrap: wrap;
+}
 
     
 }

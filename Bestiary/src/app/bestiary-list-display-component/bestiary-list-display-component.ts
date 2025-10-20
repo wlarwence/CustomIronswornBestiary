@@ -54,6 +54,8 @@ export class BestiaryListDisplayComponent implements OnInit, DoCheck {
         this.natureMenuData = TOIKNatureMenuData;
       },
     })
+
+    this.displayCreatureInfo("bear");
      return this.natureMenuData;
   }
 
