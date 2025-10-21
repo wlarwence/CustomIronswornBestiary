@@ -1,14 +1,13 @@
-import { Component, Output, EventEmitter, OnInit, inject, DestroyRef, signal, DoCheck} from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, inject} from '@angular/core';
 import { BestiaryEntry } from '../bestiary-entry.model';
 import { CreatureDisplayComponent } from './creature-display-component';
 import { trademark } from '../trademark';
-import { HttpClient } from '@angular/common/http';
 import { TomeOfInfiniteKnowledgeService } from './tome-of-infinite-knowledge.service';
 import { NatureMenuData } from '../nature-menu-data.model';
 import { KeyValuePipe } from '@angular/common';
 
 
-
+/* TODO: split this component.*/
 @Component({
   selector: 'app-bestiary-list-display-component',
   imports: [CreatureDisplayComponent, KeyValuePipe],
@@ -16,7 +15,7 @@ import { KeyValuePipe } from '@angular/common';
 })
 
 
-export class BestiaryListDisplayComponent implements OnInit, DoCheck {
+export class BestiaryListDisplayComponent implements OnInit {
   //selectedCreature is the currently selected beast
   selectedCreature!: BestiaryEntry[];
 
@@ -40,9 +39,6 @@ export class BestiaryListDisplayComponent implements OnInit, DoCheck {
   @Output() creatureNameOutput = new EventEmitter(); 
   @Output() isCreatureInfoShowingOutput = new EventEmitter();
 
-
-  private httpClient = inject(HttpClient);
-  private destroyRef = inject(DestroyRef);
   private tomeOfInfiniteKnowledgeService = inject(TomeOfInfiniteKnowledgeService);
 
 
@@ -57,10 +53,6 @@ export class BestiaryListDisplayComponent implements OnInit, DoCheck {
 
     this.displayCreatureInfo("bear");
      return this.natureMenuData;
-  }
-
-  ngDoCheck() {
-    
   }
 
   displayCreatureInfo(creatureName: string){
@@ -86,6 +78,7 @@ export class BestiaryListDisplayComponent implements OnInit, DoCheck {
     return this.isCreatureDropdownVisible;
   }
 
+  /* TODO: may remove this */
   onClose(){
     this.isCreatureInfoShowing = false;
   }

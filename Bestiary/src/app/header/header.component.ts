@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { BestiaryEntry } from '../bestiary-entry.model';
 
 
-
+/* TODO: good candidate for submenu relocation. */
 
 @Component({
   selector: 'app-header',

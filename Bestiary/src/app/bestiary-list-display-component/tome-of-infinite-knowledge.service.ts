@@ -24,13 +24,10 @@ export class TomeOfInfiniteKnowledgeService {
     // This is equivalent to /beast or /creature endpoint
     // TODO: If we stick to observable strategy, this return type will need to change too.
     fetchCreature(creatureName: string) {
-        const creatureList$ = this.httpClient.get(environment.CREATURE_ENDPOINT + "/" + creatureName).pipe(
-            map(creatureData => {
-                let natureJson: any;
-                let creatureList: BestiaryEntry[] = [];
-                natureJson = creatureData;
-                creatureList.push({nature: natureJson.nature, name: natureJson.name, rank: natureJson.rank, featurestraits: natureJson.features, 
-                drives: natureJson.drives, tactics: natureJson.tactics, desc: natureJson.description} as BestiaryEntry);
+        const creatureList$ = this.httpClient.get<BestiaryEntry & {features: string[], description: string, tactics: string}>(environment.CREATURE_ENDPOINT + "/" + creatureName).pipe(
+            map(natureJson => {
+                const creatureList: BestiaryEntry[] = [];
+                creatureList.push({...natureJson, featurestraits: natureJson.features, desc: natureJson.description});
                 return creatureList
             }),
         );

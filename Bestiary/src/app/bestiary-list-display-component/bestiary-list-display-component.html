@@ -2,12 +2,14 @@
 <div class="flex-container">
     @for (item of natureMenuData | keyvalue; track $index) {
     <nav class= "species" > 
-        <ol (click)="displayCreatureDropdown(item.key)">{{item.key}}</ol>
+        <!-- TODO: This needs restructuring. -->
+         <!-- TODO: remove link styling from the thing -->
+        <ol><a href="#" (click)="displayCreatureDropdown(item.key)">{{item.key}}</a></ol>
         @if(isCreatureDropdownVisible){
             <div class= "creature-dropdown">
                 @for (creature of item.value | keyvalue; track $index) {
                     @if(item.key === currentSelectedNature){
-                        <ul class="creature-name" (click)="displayCreatureInfo(creature.key)" >{{creature.value}}</ul> 
+                        <ul class="creature-name"><a href="#" (click)="displayCreatureInfo(creature.key)">{{creature.value}}</a></ul> 
                     }     
                 }
             </div>
@@ -15,7 +17,7 @@
     </nav>
     }
 </div>
-<article class="creature-info" (click)="onClose()">
+<article class="creature-info">
     @if(isCreatureInfoShowing){
         <app-creature-display-component [creatureNameInput]="selectedCreature"></app-creature-display-component> 
     }
