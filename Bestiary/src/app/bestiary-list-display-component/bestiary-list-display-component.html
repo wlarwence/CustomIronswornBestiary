@@ -1,36 +1,26 @@
 <main>
-  <nav class="nature-menu">
-    <ul>
-      @for (item of natureMenuData | keyvalue; track $index) {
-        <li class="species">
-          <!-- TODO: This needs restructuring. -->
-          <!-- TODO: remove link styling from the thing -->
-          <a href="#" (click)="displayCreatureDropdown(item.key)">{{
-            item.key
-          }}</a>
-        </li>
-          @if (isCreatureDropdownVisible) {
-            <ul class="creature-dropdown">
-              @for (creature of item.value | keyvalue; track $index) {
-                @if (item.key === currentSelectedNature) {
-                  <li class="creature-name">
-                    <a href="#" (click)="displayCreatureInfo(creature.key)">{{
-                      creature.value
-                    }}</a>
-                  </li>
+<div class="flex-container">
+    @for (item of natureMenuData | keyvalue; track $index) {
+    <nav class= "species" > 
+        <!-- TODO: This needs restructuring. -->
+         <!-- TODO: remove link styling from the thing -->
+        <ol><a href="#" (click)="displayCreatureDropdown(item.key)">{{item.key}}</a></ol>
+        @if(isCreatureDropdownVisible){
+            <div class= "creature-dropdown">
+                @for (creature of item.value | keyvalue; track $index) {
+                    @if(item.key === currentSelectedNature){
+                        <ul class="creature-name"><a href="#" (click)="displayCreatureInfo(creature.key)">{{creature.value}}</a></ul> 
+                    }     
                 }
-              }
-            </ul>
-          }
-      }
-    </ul>
-  </nav>
-  <article class="creature-info">
-    @if (isCreatureInfoShowing) {
-      <app-creature-display-component
-        [creatureNameInput]="selectedCreature"
-      ></app-creature-display-component>
+            </div>
+        }
+    </nav>
     }
-  </article>
-  <p class="trademark">{{ dummyTrademark }}</p>
+</div>
+<article class="creature-info">
+    @if(isCreatureInfoShowing){
+        <app-creature-display-component [creatureNameInput]="selectedCreature"></app-creature-display-component> 
+    }
+</article>
+<p class="trademark">{{dummyTrademark}}</p>
 </main>
