@@ -241,6 +241,10 @@ li.nature {
 }
 
 @media (max-width: 768px){
+  html {
+    font-size: 16px;
+  }
+  
   .display-component-content > ul {
     width: auto;
     font-size: 1rem;
