@@ -22,11 +22,11 @@ export class TomeOfInfiniteKnowledgeService {
     }
 
     // This is equivalent to /beast or /creature endpoint
-    fetchCreature(creatureName: string) {
-        const creatureList$ = this.httpClient.get<BestiaryEntry & {features: string[], description: string, tactics: string}>(environment.CREATURE_ENDPOINT + "/" + creatureName).pipe(
+    fetchCreature(creatureKey: string) {
+        const creatureList$ = this.httpClient.get<BestiaryEntry & {features: string[], description: string, tactics: string}>(environment.CREATURE_ENDPOINT + "/" + creatureKey).pipe(
             map(natureJson => {
                 const creatureList: BestiaryEntry[] = [];
-                creatureList.push({...natureJson, featurestraits: natureJson.features, desc: natureJson.description});
+                creatureList.push({...natureJson, creatureNameKey: creatureKey, featurestraits: natureJson.features, desc: natureJson.description});
                 return creatureList
             }),
         );

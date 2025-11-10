@@ -56,22 +56,27 @@ export class BestiaryListDisplayComponent implements OnInit {
   }
 
   displayCreatureInfo(creatureName: string){
-    if (creatureName != undefined){
-      this.tomeOfInfiniteKnowledgeService.fetchCreature(creatureName).subscribe({
-      next: (serviceList) => {
-        this.selectedCreature = serviceList && serviceList.length ? serviceList[0] : undefined;
-      },
-    })
+    if (creatureName !== undefined){
+      if (this.selectedCreature?.creatureNameKey === creatureName) {
+        // Double click closes submenu
+        this.isCreatureDropdownVisible = false;
+      } else {
+        // Load up new creature.
+        this.tomeOfInfiniteKnowledgeService.fetchCreature(creatureName).subscribe({
+          next: (serviceList) => {
+            this.selectedCreature = serviceList && serviceList.length ? serviceList[0] : undefined;
+            this.isCreatureInfoShowing = true;
+          },
+        });
+      }
     } 
-    this.isCreatureInfoShowing = true;
-     return this.selectedCreature;
   }
 
   displayCreatureDropdown(nature: string){
      if(nature === this.currentSelectedNature){
       this.isCreatureDropdownVisible = !this.isCreatureDropdownVisible;
     }
-    if(nature != this.currentSelectedNature){
+    if(nature !== this.currentSelectedNature){
       this.isCreatureDropdownVisible = true;
     }
     this.currentSelectedNature = nature;
