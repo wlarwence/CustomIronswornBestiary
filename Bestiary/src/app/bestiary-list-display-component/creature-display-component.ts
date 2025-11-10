@@ -8,7 +8,7 @@ import { CreatureAttribute } from './creature-attribute.model';
   templateUrl: './creature-display-component.html',
 })
 export class CreatureDisplayComponent {
-  @Input({required: false}) creatureNameInput!: BestiaryEntry[];
+  @Input({required: false}) creatureInfo!: BestiaryEntry;
 
   public attributeTree: CreatureAttribute[];
 

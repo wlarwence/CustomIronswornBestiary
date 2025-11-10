@@ -1,25 +1,24 @@
     <div class="display-component">
-        <!-- TODO: remove this for loop -->
-        @for(creatureInfo of creatureNameInput; track $index){
         <h1>
             {{creatureInfo.name}}
         </h1>
-        <ul>
-            @for(attribute of attributeTree; track attribute) {
-                <li>{{attribute.name}}:
-                @if(attribute.displayAsBullets) {
-                    <ul>
-                        @for(item of creatureInfo[attribute.key]; track item) {
-                            <li>{{item}}</li>
-                        }
-                    </ul>
-                } @else {
-                    {{creatureInfo[attribute.key]}}
+        <div class="display-component-content">
+            <ul>
+                @for(attribute of attributeTree; track attribute.key) {
+                    <li>{{attribute.name}}:
+                    @if(attribute.displayAsBullets) {
+                        <ul>
+                            @for(item of creatureInfo[attribute.key]; track item) {
+                                <li>{{item}}</li>
+                            }
+                        </ul>
+                    } @else {
+                        {{creatureInfo[attribute.key]}}
+                    }
+                    </li>
                 }
-                </li>
-            }
-        </ul>
-        <p>{{creatureInfo.desc}}<p>
-        }
+            </ul>
+            <p>{{creatureInfo.desc}}</p>
+        </div>
         
     </div>

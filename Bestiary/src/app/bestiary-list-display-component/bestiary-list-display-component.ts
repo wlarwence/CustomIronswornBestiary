@@ -7,7 +7,7 @@ import { NatureMenuData } from '../nature-menu-data.model';
 import { KeyValuePipe } from '@angular/common';
 
 
-/* TODO: split this component.*/
+/* TODO (after v1.0 is released): split this component.*/
 @Component({
   selector: 'app-bestiary-list-display-component',
   imports: [CreatureDisplayComponent, KeyValuePipe],
@@ -17,7 +17,7 @@ import { KeyValuePipe } from '@angular/common';
 
 export class BestiaryListDisplayComponent implements OnInit {
   //selectedCreature is the currently selected beast
-  selectedCreature!: BestiaryEntry[];
+  selectedCreature?: BestiaryEntry;
 
   //The currently selected nature for the menu
   currentSelectedNature!: string;
@@ -59,7 +59,7 @@ export class BestiaryListDisplayComponent implements OnInit {
     if (creatureName != undefined){
       this.tomeOfInfiniteKnowledgeService.fetchCreature(creatureName).subscribe({
       next: (serviceList) => {
-        this.selectedCreature = serviceList;
+        this.selectedCreature = serviceList && serviceList.length ? serviceList[0] : undefined;
       },
     })
     } 
@@ -78,8 +78,7 @@ export class BestiaryListDisplayComponent implements OnInit {
     return this.isCreatureDropdownVisible;
   }
 
-  /* TODO: may remove this */
-  onClose(){
-    this.isCreatureInfoShowing = false;
+  onCloseCreatureDropdown(){
+    this.isCreatureDropdownVisible = false;
   }
 }

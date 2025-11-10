@@ -1,26 +1,40 @@
 <main>
-<div class="flex-container">
-    @for (item of natureMenuData | keyvalue; track $index) {
-    <nav class= "species" > 
-        <!-- TODO: This needs restructuring. -->
-         <!-- TODO: remove link styling from the thing -->
-        <ol><a href="#" (click)="displayCreatureDropdown(item.key)">{{item.key}}</a></ol>
-        @if(isCreatureDropdownVisible){
-            <div class= "creature-dropdown">
-                @for (creature of item.value | keyvalue; track $index) {
-                    @if(item.key === currentSelectedNature){
-                        <ul class="creature-name"><a href="#" (click)="displayCreatureInfo(creature.key)">{{creature.value}}</a></ul> 
-                    }     
-                }
-            </div>
-        }
-    </nav>
+  <nav class="flex-container">
+    <ul>
+    @for (natureList of natureMenuData | keyvalue; track natureList.key) {
+      <li class="menu-item menu-item-main">
+        <a href="#" (click)="$event.preventDefault(); displayCreatureDropdown(natureList.key)">{{
+          natureList.key
+        }}</a>
+        
+      @if(isCreatureDropdownVisible){
+      <li class="outer-creature-dropdown">
+        <ul class="inner-creature-dropdown">
+          @for (creature of natureList.value | keyvalue; track creature.key) {
+          @if(natureList.key === currentSelectedNature){
+            <li class="menu-item menu-item-sub">
+              <a href="#" (click)="$event.preventDefault(); displayCreatureInfo(creature.key)">{{
+                creature.value
+              }}</a>
+            </li>
+          } }
+        </ul>
+      </li>
+      }
+      </li>
     }
-</div>
-<article class="creature-info">
-    @if(isCreatureInfoShowing){
-        <app-creature-display-component [creatureNameInput]="selectedCreature"></app-creature-display-component> 
+    </ul>
+  </nav>
+  
+  @if(isCreatureDropdownVisible) {
+    <div class="backdrop" (click)="onCloseCreatureDropdown()" aria-hidden="true"></div>
+  }
+  <article class="creature-info">
+    @if(isCreatureInfoShowing && selectedCreature !== undefined){
+    <app-creature-display-component
+      [creatureInfo]="selectedCreature"
+    ></app-creature-display-component>
     }
-</article>
-<p class="trademark">{{dummyTrademark}}</p>
+  </article>
+  <p class="trademark">{{ dummyTrademark }}</p>
 </main>
