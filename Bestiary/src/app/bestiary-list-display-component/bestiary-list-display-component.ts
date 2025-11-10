@@ -52,7 +52,6 @@ export class BestiaryListDisplayComponent implements OnInit {
     })
 
     this.displayCreatureInfo("bear");
-     return this.natureMenuData;
   }
 
   displayCreatureInfo(creatureName: string){
@@ -80,7 +79,6 @@ export class BestiaryListDisplayComponent implements OnInit {
       this.isCreatureDropdownVisible = true;
     }
     this.currentSelectedNature = nature;
-    return this.isCreatureDropdownVisible;
   }
 
   onCloseCreatureDropdown(){

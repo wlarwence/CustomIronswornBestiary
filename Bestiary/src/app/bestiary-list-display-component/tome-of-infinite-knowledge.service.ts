@@ -27,7 +27,7 @@ export class TomeOfInfiniteKnowledgeService {
             map(natureJson => {
                 const creatureList: BestiaryEntry[] = [];
                 creatureList.push({...natureJson, creatureNameKey: creatureKey, featurestraits: natureJson.features, desc: natureJson.description});
-                return creatureList
+                return creatureList;
             }),
         );
         return creatureList$;
